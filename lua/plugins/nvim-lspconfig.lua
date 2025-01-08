@@ -1,5 +1,6 @@
 return {
   'neovim/nvim-lspconfig',
+  event = 'VeryLazy',
   dependencies = {
     { 'williamboman/mason.nvim', config = true, cmd = 'Mason' },
     { 'williamboman/mason-lspconfig.nvim' },
@@ -24,13 +25,20 @@ return {
   config = function()
     -- installing tools
     local tools = {
-      'shfmt',
       'stylua',
       'goimports',
       'prettier',
       'shellcheck',
       'yamllint',
+      'eslint-lsp',
+      'prettierd',
+      'tailwindcss-language-server',
+      'typescript-language-server',
+      'shfmt',
+      'eslint_d',
     }
+    require('mason').setup()
+    require('mason-registry').update()
     for _, f in pairs(tools) do
       local pkg = require('mason-registry').get_package(f)
       if not pkg:is_installed(f) then
@@ -95,6 +103,9 @@ return {
         },
       },
       gopls = {},
+      ts_ls = {},
+      tailwindcss = {},
+      eslint = {},
     }
 
     require('mason').setup {
@@ -111,6 +122,9 @@ return {
       handlers = {
         function(server_name)
           local server_opts = servers[server_name]
+          if not server_opts then
+            print(server_name)
+          end
           server_opts.capabilities = lspconfig_defaults.capabilities
           require('lspconfig')[server_name].setup {
             settings = server_opts.settings,

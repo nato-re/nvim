@@ -28,6 +28,7 @@ return {
         'vim',
         'vimdoc',
         'yaml',
+        'tsx',
       },
 
       highlight = { enable = true },

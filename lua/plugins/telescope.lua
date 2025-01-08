@@ -26,6 +26,7 @@ return {
     { '<leader>sf', ':Telescope find_files<cr>', desc = 'Search Files' },
     { '<leader>sh', ':Telescope help_tags<cr>', desc = 'Search Help' },
     { '<leader>sw', ':Telescope grep_string<cr>', desc = 'Search Current Word' },
+    { '<leader>ss', ':Telescope grep_string <cr>', desc = 'Search Current Word' },
     { '<leader>sg', ':Telescope live_grep<cr>', desc = 'Search by Grep' },
     { '<leader>sd', ':Telescope diagnostics<cr>', desc = 'Search Diagnostics' },
     { '<leader>st', ':Telescope git_files<cr>', desc = 'Search Git Files' },

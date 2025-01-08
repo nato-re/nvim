@@ -10,7 +10,7 @@ map('n', '<C-k>', [[<cmd>cnext<CR>zz]], { desc = 'Navigate next in quickfix list
 map('n', '<C-j>', [[<cmd>cprev<CR>zz]], { desc = 'Navigate previous in quickfix list' })
 map('n', '<leader>k', [[<cmd>lnext<CR>zz]], { desc = 'Navigate next in location list' })
 map('n', '<leader>j', [[<cmd>lprev<CR>zz]], { desc = 'Navigate previous in location list' })
-map('n', '<leader>r', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Search and replace' })
+map('n', '<leader>sr', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Search and replace' })
 map('n', '<leader>x', [[<cmd>!chmod +x %<CR>]], { desc = 'Allow execution permission' })
 map('n', '<leader>h', vim.cmd.split, { desc = 'Split horizontally' })
 map('n', '<leader>v', vim.cmd.vsplit, { desc = 'Split vertically' })
@@ -21,3 +21,9 @@ map('n', '<leader>.', [[<Cmd>lcd %:p:h<CR>]], { desc = 'Set current file directo
 map('v', '<', [[<gv]], { desc = 'Move code forward in visual mode' })
 map('v', '>', [[>gv]], { desc = 'Move code backward in visual mode' })
 map('n', '<Esc>', [[:noh<CR>]], { desc = 'Clear highlights' })
+
+function _G.GoogleSearch(searchterm)
+  os.execute(string.format('chromium "http://google.com/search?q=%s"  > /dev/null', vim.api.nvim_get_current_line()))
+  return
+end
+map('n', '<leader>ls', ':lua GoogleSearch()<CR>')
