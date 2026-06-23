@@ -1,2 +1,2 @@
-require 'cassiobotaro'
+require 'nato-re'
 vim.opt.clipboard = 'unnamedplus'

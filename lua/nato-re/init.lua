@@ -1,0 +1,5 @@
+require 'nato-re.global'
+require 'nato-re.lazy'
+require 'nato-re.option'
+require 'nato-re.remap'
+require 'nato-re.autocommand'
