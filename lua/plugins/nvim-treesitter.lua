@@ -1,6 +1,8 @@
 -- tree-sitter is a parser generator tool and an incremental parsing library.
 return {
   'nvim-treesitter/nvim-treesitter',
+  branch = 'master',
+  version = false,
   build = ':TSUpdate',
   dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects' },
   config = function()
