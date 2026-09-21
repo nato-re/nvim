@@ -12,11 +12,11 @@ fi
 
 # 2. Baixar e instalar o binário oficial do Neovim
 echo "📥 Baixando a versão mais recente do Neovim..."
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
 echo "🔧 Instalando em /opt..."
-sudo tar -C /opt -xzf nvim-linux64.tar.gz
-sudo ln -sf /opt/nvim-linux64/bin/nvim /usr/local/bin/nvim
-rm nvim-linux64.tar.gz
+sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+sudo ln -sf /opt/nvim-linux-x86_64/bin/nvim /usr/local/bin/nvim
+rm nvim-linux-x86_64.tar.gz
 
 # 3. Baixar a configuração (se ainda não existir)
 if [ ! -d "$HOME/.config/nvim" ]; then
