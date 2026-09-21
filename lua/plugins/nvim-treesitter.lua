@@ -31,6 +31,7 @@ return {
         'vimdoc',
         'yaml',
         'tsx',
+        'prisma',
       },
 
       highlight = { enable = true },

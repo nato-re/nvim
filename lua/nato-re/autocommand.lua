@@ -16,7 +16,9 @@ api.nvim_create_autocmd('BufReadPost', {
 -- remove trailing whitespace on save
 api.nvim_create_autocmd('BufWritePre', {
   callback = function()
-    vim.cmd ':%s/\\s\\+$//e'
+    if vim.bo.modifiable then
+      vim.cmd ':%s/\\s\\+$//e'
+    end
   end,
 })
 

@@ -5,5 +5,10 @@ return {
     { '-', '<cmd>Oil<cr>', desc = 'Toggle file explorer' },
   },
   dependencies = { 'nvim-tree/nvim-web-devicons' },
-  config = true,
+  opts = {
+    experimental_watch_for_changes = true,
+    view_options = {
+      show_hidden = true,
+    },
+  },
 }

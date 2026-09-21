@@ -24,3 +24,12 @@ vim.opt.writebackup = false -- if a file is being edited by another program (or 
 vim.opt.title = true -- set the title of window to the value of the titlestring
 vim.opt.completeopt = { 'menu', 'menuone', 'noselect' } -- mostly just for cmp
 vim.opt.clipboard = 'unnamedplus'
+
+-- Set filetype detection for alphaTex/alphaTab files on startup
+vim.filetype.add({
+  extension = {
+    atex = 'alphatex',
+    alphatex = 'alphatex',
+    alphatab = 'alphatex',
+  },
+})

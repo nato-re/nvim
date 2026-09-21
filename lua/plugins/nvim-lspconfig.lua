@@ -36,6 +36,7 @@ return {
       'typescript-language-server',
       'shfmt',
       'eslint_d',
+      'prisma-language-server',
     }
     require('mason').setup()
     require('mason-registry').update()
@@ -103,9 +104,27 @@ return {
         },
       },
       gopls = {},
-      ts_ls = {},
+      ts_ls = {
+        settings = {
+          typescript = {
+            implicitProjectConfig = {
+              module = 'esnext',
+              target = 'es2023',
+              moduleResolution = 'bundler',
+            },
+          },
+          javascript = {
+            implicitProjectConfig = {
+              module = 'esnext',
+              target = 'es2023',
+              moduleResolution = 'bundler',
+            },
+          },
+        },
+      },
       tailwindcss = {},
       eslint = {},
+      prismals = {},
     }
 
     require('mason').setup {
@@ -132,6 +151,36 @@ return {
           }
         end,
       },
+    }
+
+    -- Manual setup for alphatab-language-server (not managed by Mason)
+    local lspconfig = require('lspconfig')
+    local configs = require('lspconfig.configs')
+
+    local alphatab_bin = vim.fn.exepath('alphatab-language-server')
+    if alphatab_bin == '' then
+      local paths = vim.fn.glob('~/.nvm/versions/node/*/bin/alphatab-language-server', true, true)
+      if #paths > 0 then
+        alphatab_bin = paths[1]
+      end
+    end
+
+    if not configs.alphatab_ls then
+      configs.alphatab_ls = {
+        default_config = {
+          cmd = alphatab_bin ~= '' and { 'node', alphatab_bin, '--stdio' } or { 'alphatab-language-server', '--stdio' },
+          filetypes = { 'alphatex' },
+          root_dir = function(fname)
+            local root = lspconfig.util.root_pattern('.git', 'package.json')(fname)
+            return root or vim.fs.dirname(fname)
+          end,
+          settings = {},
+        },
+      }
+    end
+
+    lspconfig.alphatab_ls.setup {
+      capabilities = lspconfig_defaults.capabilities,
     }
 
     ---

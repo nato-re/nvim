@@ -34,6 +34,26 @@ return {
   },
   config = function()
     require('telescope').setup {
+      defaults = {
+        file_ignore_patterns = {
+          '^%.git/',
+        },
+        vimgrep_arguments = {
+          'rg',
+          '--color=never',
+          '--no-heading',
+          '--with-filename',
+          '--line-number',
+          '--column',
+          '--smart-case',
+          '--hidden',
+        },
+      },
+      pickers = {
+        find_files = {
+          hidden = true,
+        },
+      },
       extensions = {
         wrap_results = true,
         ['ui-select'] = {
